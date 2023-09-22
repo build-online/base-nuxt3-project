@@ -2,7 +2,35 @@
   <PageWrapper>
     <div class="w-full flex justify-center mt-20">
       <div class="w-1/2 space-y-4">
-        <InputField label="Name" />
+        <div class="grid grid-cols-2 gap-5">
+          <InputField id="someId" label="Name" />
+          <InputField label="Info" :info="true" placeholder="Info input" />
+          <InputField
+            label="Success"
+            :success="true"
+            placeholder="Success input"
+          />
+          <InputField
+            label="Warning"
+            :warning="true"
+            placeholder="Warning input"
+          />
+          <InputField
+            label="Error"
+            :error="'Error message'"
+            placeholder="Error input"
+          />
+          <InputField
+            label="Disabled"
+            :disabled="true"
+            placeholder="Disabled input"
+          />
+        </div>
+        <InputField label="With left icon" placeholder="Example with icon">
+          <template #leftIcon>
+            <PenIcon />
+          </template>
+        </InputField>
         <SelectField label="Options" :options="options" />
         <Switch label="Switch" />
 
