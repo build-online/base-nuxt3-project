@@ -6,6 +6,18 @@
         <SelectField label="Options" :options="options" />
         <Switch label="Switch" />
 
+        <TextEditor
+          ref="editor"
+          v-model:model-value="editorContent"
+          :max-length="50"
+          class="h-44"
+        >
+          <template #error> Max length reached </template>
+        </TextEditor>
+        <Button class="w-40 ml-auto" type="button" @click="getHTMLDemo">
+          Get HTML
+        </Button>
+
         <div class="flex justify-center">
           <Dialog ref="dialog" title="Dialog">
             <template #trigger>
@@ -87,6 +99,7 @@ import Button from '@/components/common/buttons/Button'
 import Dialog from '@/components/common/others/Dialog'
 import Switch from '@/components/common/others/Switch'
 import Dropdown from '@/components/common/others/Dropdown'
+import TextEditor from '@/components/common/others/TextEditor.vue'
 
 import { TrashIcon, PenIcon } from '@/components/common/icons'
 
@@ -99,6 +112,13 @@ const options = reactive([
   { key: '5', value: 'Tanya Fox' },
   { key: '6', value: 'Hellen Schmidt' },
 ])
+
+const editorContent = ref('')
+const editor = ref(null)
+
+const getHTMLDemo = () => {
+  console.log(editor.value.getHTML())
+}
 
 const onDialogSave = () => {
   dialog.value.closeModal()
